@@ -151,7 +151,7 @@ fun SortButton(
     Box(modifier = modifier) {
         OutlinedButton(
             onClick = { onExpandedChange(true) },
-            shape = RoundedCornerShape(5.dp),
+            shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White,
             ),
