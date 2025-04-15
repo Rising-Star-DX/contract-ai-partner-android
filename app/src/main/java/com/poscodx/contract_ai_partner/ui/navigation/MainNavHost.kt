@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.poscodx.contract_ai_partner.ui.document.DocumentListScreen
+
 //import com.poscodx.contract_ai_partner.ui.mypage.MyPageScreen
 //import com.poscodx.contract_ai_partner.ui.upload.UploadScreen
 
@@ -16,14 +17,14 @@ fun MainNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavItem.DocumentList.route,
+        startDestination = BottomNavItem.Contract.route,
         modifier = modifier
     ) {
-        composable(BottomNavItem.DocumentList.route) {
-            DocumentListScreen()
+        composable(BottomNavItem.Standard.route) {
+
         }
-        composable(BottomNavItem.Upload.route) {
-//            UploadScreen()
+        composable(BottomNavItem.Contract.route) {
+            DocumentListScreen()
         }
         composable(BottomNavItem.MyPage.route) {
 //            MyPageScreen()

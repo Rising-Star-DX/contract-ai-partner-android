@@ -8,4 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#5686E1</color>
+    <color name="depth0">#ffffffff</color>
+    <color name="depth1">#fff8f9f9</color>
+    <color name="depth2">#fff2f3f4</color>
+    <color name="depth3">#ffe5e7e9</color>
+    <color name="depth4">#ffd7dbdd</color>
+    <color name="dark0">#ff17202a</color>
+    <color name="dark1">#ff1c2833</color>
+    <color name="dark2">#ff212f3d</color>
+    <color name="dark3">#ff212f3d</color>
+    <color name="dark4">#ff2c3e50</color>
+    <color name="grey0">#ffeaecee</color>
+    <color name="grey1">#ffd5d8dc</color>
+    <color name="grey2">#ffabb2b9</color>
+    <color name="grey3">#ffabb2b9</color>
+    <color name="grey4">#ff566573</color>
 </resources>
