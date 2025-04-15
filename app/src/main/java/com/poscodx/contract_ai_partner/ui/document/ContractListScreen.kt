@@ -306,6 +306,7 @@ fun SortChipRow(
         SortKey.NAME -> {
             if (sortState.direction == SortDirection.ASC) "이름(오름차)" else "이름(내림차)"
         }
+
         SortKey.UPLOAD_DATE -> {
             if (sortState.direction == SortDirection.ASC) "날짜(오름차)" else "날짜(내림차)"
         }
@@ -341,7 +342,8 @@ fun SortChipRow(
 @Composable
 fun DocumentListItem(document: DocumentItemUi) {
     // 완료=파란색(#2962FF 근사값), 실패=빨간색(#FF5252 근사값)
-    val statusColor = if (document.aiStatus == "완료") Color(0xFF2962FF) else Color(0xFFFF5252)
+    val statusColor =
+        if (document.aiStatus == "완료") colorResource(R.color.primary) else Color(0xFFCD6155)
     val statusText = if (document.aiStatus == "완료") "AI 분석 완료" else "AI 분석 실패"
 
     // 아이템 배경색(이미지 보면 왼쪽만 약간 파란 배경)
