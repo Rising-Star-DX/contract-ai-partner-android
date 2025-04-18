@@ -28,6 +28,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.poscodx.contract_ai_partner.R
+import com.poscodx.contract_ai_partner.ui.upload.UploadBottomBar
+import com.poscodx.contract_ai_partner.ui.upload.UploadTopBar
 
 @Composable
 fun MainScreen() {
@@ -35,6 +37,7 @@ fun MainScreen() {
     val navBackStackEntry = navController.currentBackStackEntryAsState()
     val currentDestination =
         navBackStackEntry.value?.destination?.route ?: BottomNavItem.Contract.route
+    val isUploadScreen = currentDestination == "upload"
 
     val title = when (currentDestination) {
         BottomNavItem.Standard.route -> "기준 문서"
@@ -46,20 +49,29 @@ fun MainScreen() {
     // 상단 AppBar, 하단 BottomNavigation
     Scaffold(
         topBar = {
-            TopBar(
-                title = title,
-                onMenuClick = { /* TODO: Drawer 열기 or 기타 이벤트 */ },
-                onCategoryClick = { /* TODO: Dropdown 열기 or 기타 이벤트 */ }
-            )
+            if (isUploadScreen) {
+                UploadTopBar { navController.popBackStack() }
+            } else {
+                TopBar(
+                    title = title,
+                    onMenuClick = { /* TODO: Drawer 열기 or 기타 이벤트 */ },
+                    onCategoryClick = { /* TODO: Dropdown 열기 or 기타 이벤트 */ }
+                )
+            }
+
         },
         bottomBar = {
-            BottomBar(navController = navController, currentRoute = currentDestination)
+            if (isUploadScreen) {
+                UploadBottomBar { navController.popBackStack() }
+            } else {
+                BottomBar(navController = navController, currentRoute = currentDestination)
+            }
         },
         floatingActionButton = {
             // 계약서 업로드 FAB
             if (currentDestination == BottomNavItem.Contract.route) {
                 FloatingActionButton(
-                    onClick = { /* TODO: 계약서 업로드 로직 */ },
+                    onClick = { navController.navigate("upload") },
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Icon(
