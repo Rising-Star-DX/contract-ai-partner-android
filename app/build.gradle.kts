@@ -57,4 +57,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Glide 이미지 라이브러리
+    implementation(libs.compose)
+
+    // ML Kit
+    implementation(libs.play.services.mlkit.document.scanner)
 }
