@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- ✨ 이 도메인(및 하위 도메인)에만 HTTP 허용 -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">
+            rising-star-alb-885642517.ap-northeast-2.elb.amazonaws.com
+        </domain>
+    </domain-config>
+</network-security-config>
