@@ -1,5 +1,6 @@
-package com.poscodx.contract_ai_partner.ui.document
+package com.poscodx.contract_ai_partner.feature.contractlist
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,7 +33,13 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.poscodx.contract_ai_partner.R
+import com.poscodx.contract_ai_partner.data.mapper.toUi
+import com.poscodx.contract_ai_partner.feature.contractlist.component.CombinedChipsRow
+import com.poscodx.contract_ai_partner.feature.contractlist.component.DocumentListItem
+import com.poscodx.contract_ai_partner.feature.contractlist.component.FilterBottomSheet
+import com.poscodx.contract_ai_partner.feature.contractlist.component.SortBottomSheet
 
 @Composable
 fun DocumentListScreen() {
@@ -60,6 +68,25 @@ fun DocumentListScreen() {
     // 소트 활성화 여부
     var sortState by remember { mutableStateOf<SortState?>(null) }
     val isSortActive = (sortState != null)
+
+    // 🔹 ① ViewModel 주입
+    val viewModel: ContractListViewModel = hiltViewModel()
+
+    // 🔹 ② UI 상태 관찰
+    val uiState = viewModel.uiState
+
+    // 🔹 ③ 최초·갱신 시 로그
+    LaunchedEffect(uiState) {
+        when (uiState) {
+            is ContractListViewModel.UiState.Success -> {
+                Log.d("ContractListScreen", "API Success: ${uiState.data.size} items")
+            }
+            is ContractListViewModel.UiState.Error -> {
+                Log.e("ContractListScreen", "API Error", uiState.throwable)
+            }
+            else -> Unit
+        }
+    }
 
     // 전체 UI
     Column(
@@ -123,6 +150,12 @@ fun DocumentListScreen() {
             categories = selectedCategories,
             onRemoveCategory = { cat -> selectedCategories -= cat }
         )
+
+        // 🔹 ④ 문서 목록 데이터 결정
+        val documentList = when (uiState) {
+            is ContractListViewModel.UiState.Success -> uiState.data.map { it.toUi() }
+            else -> emptyList()   // 로딩·에러는 빈 리스트
+        }
 
         // 문서 목록
         LazyColumn(

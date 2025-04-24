@@ -1,4 +1,4 @@
-package com.poscodx.contract_ai_partner.ui.document
+package com.poscodx.contract_ai_partner.feature.contractlist.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,6 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.poscodx.contract_ai_partner.R
+import com.poscodx.contract_ai_partner.feature.contractlist.SortDirection
+import com.poscodx.contract_ai_partner.feature.contractlist.SortKey
+import com.poscodx.contract_ai_partner.feature.contractlist.SortState
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable

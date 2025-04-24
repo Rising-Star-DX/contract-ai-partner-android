@@ -1,4 +1,4 @@
-package com.poscodx.contract_ai_partner.ui.document
+package com.poscodx.contract_ai_partner.feature.contractlist.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.horizontalScroll

@@ -1,4 +1,4 @@
-package com.poscodx.contract_ai_partner.ui.document
+package com.poscodx.contract_ai_partner.feature.contractlist.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
@@ -24,6 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.poscodx.contract_ai_partner.feature.contractlist.SortDirection
+import com.poscodx.contract_ai_partner.feature.contractlist.SortKey
+import com.poscodx.contract_ai_partner.feature.contractlist.SortState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
