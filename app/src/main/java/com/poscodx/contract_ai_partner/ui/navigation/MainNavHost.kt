@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.poscodx.contract_ai_partner.ui.document.DocumentListScreen
+import com.poscodx.contract_ai_partner.feature.contractlist.DocumentListScreen
 import com.poscodx.contract_ai_partner.ui.upload.UploadContractScreen
 
 //import com.poscodx.contract_ai_partner.ui.mypage.MyPageScreen
