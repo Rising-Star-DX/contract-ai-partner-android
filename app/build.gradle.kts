@@ -63,4 +63,15 @@ dependencies {
 
     // ML Kit
     implementation(libs.play.services.mlkit.document.scanner)
+
+    // Ktor
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+
+    // logback
+    implementation(libs.logback.classic)
+
+    // json
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
 }
