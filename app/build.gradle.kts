@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 android {
@@ -67,11 +70,24 @@ dependencies {
     // Ktor
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.logging)
+    implementation(libs.ktor.client.android)
 
     // logback
     implementation(libs.logback.classic)
+    implementation(libs.slf4j.android)
 
     // json
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.hilt.android.compiler)
+}
+
+configurations.configureEach {
+    exclude(group = "ch.qos.logback", module = "logback-classic")
+    exclude(group = "ch.qos.logback", module = "logback-core")
 }

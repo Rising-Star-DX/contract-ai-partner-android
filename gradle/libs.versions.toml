@@ -1,6 +1,8 @@
 [versions]
 agp = "8.9.2"
 compose = "1.0.0-beta01"
+hiltAndroid = "2.56.2"
+hiltNavigationCompose = "1.2.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -13,10 +15,14 @@ composeBom = "2025.04.01"
 logbackClassic = "1.5.6"
 navigationCompose = "2.8.9"
 playServicesMlkitDocumentScanner = "16.0.0-beta1"
+slf4jAndroid = "1.7.36"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 compose = { module = "com.github.bumptech.glide:compose", version.ref = "compose" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -31,12 +37,15 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logbackClassic" }
 play-services-mlkit-document-scanner = { module = "com.google.android.gms:play-services-mlkit-document-scanner", version.ref = "playServicesMlkitDocumentScanner" }
+slf4j-android = { module = "org.slf4j:slf4j-android", version.ref = "slf4jAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
