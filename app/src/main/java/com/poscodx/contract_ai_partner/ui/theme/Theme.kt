@@ -39,7 +39,7 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
-private val NanumSquareNeoFontFamily = FontFamily(
+val NanumSquareNeoFontFamily = FontFamily(
     Font(R.font.nanum_square_neo_alt, weight = FontWeight.Light),       // Light
     Font(R.font.nanum_square_neo_brg, weight = FontWeight.Normal),      // Regular
     Font(R.font.nanum_square_neo_cbd, weight = FontWeight.Bold),        // Bold

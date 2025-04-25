@@ -7,10 +7,12 @@ import java.time.format.DateTimeFormatter
 
 fun Contract.toUi(): DocumentItemUi =
     DocumentItemUi(
+        id = this.id,
         fileTypeIcon = when (fileType) {
             "PDF" -> R.drawable.ic_pdf
             "DOCX" -> R.drawable.ic_doc
             "JPEG", "PNG" -> R.drawable.ic_jpg
+            "XLS", "XLSX" -> R.drawable.ic_xls
             else -> R.drawable.ic_pdf
         },
         fileName   = name,

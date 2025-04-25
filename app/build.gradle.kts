@@ -85,6 +85,9 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.android.compiler)
+
+    // pdf viewer
+    implementation (libs.bouquet)
 }
 
 configurations.configureEach {

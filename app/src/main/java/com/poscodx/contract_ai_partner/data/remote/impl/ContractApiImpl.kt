@@ -12,7 +12,7 @@ class ContractApiImpl @Inject constructor(
     private val client: HttpClient
 ) : ContractApi {
     override suspend fun getContractList(): List<ContractDto> =
-        client.get("/agreements").body<ApiResponse<List<ContractDto>>>().data
+        client.get("/agreements/android").body<ApiResponse<List<ContractDto>>>().data
 
 //    override suspend fun getContract(id: Long): ContractDetailDto =
 //        client.get("/agreements/$id").body()

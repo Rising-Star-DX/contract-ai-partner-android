@@ -43,13 +43,6 @@ import com.poscodx.contract_ai_partner.feature.contractlist.component.SortBottom
 
 @Composable
 fun DocumentListScreen() {
-    // 문서 리스트 예시
-    val documentList = listOf(
-        DocumentItemUi(R.drawable.ic_pdf, "근로계약서.pdf", "인사", "2025.4.7 오후 5:51:33", "완료"),
-        DocumentItemUi(R.drawable.ic_doc, "근로계약서.pdf", "인사", "2025.4.7 오후 5:51:33", "실패"),
-        DocumentItemUi(R.drawable.ic_jpg, "근로계약서.pdf", "인사", "2025.4.7 오후 5:51:33", "완료"),
-    )
-
     var searchQuery by remember { mutableStateOf("") }
 
     // 바텀시트 표시 상태
@@ -157,6 +150,8 @@ fun DocumentListScreen() {
             else -> emptyList()   // 로딩·에러는 빈 리스트
         }
 
+        Log.d("DocumentListScreen", "documentList: $documentList")
+
         // 문서 목록
         LazyColumn(
             modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 16.dp)
@@ -235,6 +230,7 @@ data class SortState(
 
 // 간단한 UI 데이터 모델
 data class DocumentItemUi(
+    val id: Long,
     @DrawableRes val fileTypeIcon: Int,
     val fileName: String,
     val department: String,

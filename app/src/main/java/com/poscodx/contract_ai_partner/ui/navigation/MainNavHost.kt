@@ -3,9 +3,13 @@ package com.poscodx.contract_ai_partner.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.poscodx.contract_ai_partner.feature.contractlist.DocumentListScreen
+import com.poscodx.contract_ai_partner.feature.standarddetail.StandardDetailScreen
+import com.poscodx.contract_ai_partner.feature.standardlist.StandardListScreen
 import com.poscodx.contract_ai_partner.ui.upload.UploadContractScreen
 
 //import com.poscodx.contract_ai_partner.ui.mypage.MyPageScreen
@@ -22,8 +26,15 @@ fun MainNavHost(
         modifier = modifier
     ) {
         composable(BottomNavItem.Standard.route) {
-
+            StandardListScreen(navController)
         }
+        composable(
+            "standardDetail/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.LongType })
+        ) {
+            StandardDetailScreen()
+        }
+
         composable(BottomNavItem.Contract.route) {
             DocumentListScreen()
         }
