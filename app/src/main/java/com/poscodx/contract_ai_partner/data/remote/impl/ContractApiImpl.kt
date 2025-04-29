@@ -2,6 +2,7 @@ package com.poscodx.contract_ai_partner.data.remote.impl
 
 import com.poscodx.contract_ai_partner.data.remote.api.ContractApi
 import com.poscodx.contract_ai_partner.data.remote.dto.ApiResponse
+import com.poscodx.contract_ai_partner.data.remote.dto.ContractDetailDto
 import com.poscodx.contract_ai_partner.data.remote.dto.ContractDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -14,8 +15,8 @@ class ContractApiImpl @Inject constructor(
     override suspend fun getContractList(): List<ContractDto> =
         client.get("/agreements/android").body<ApiResponse<List<ContractDto>>>().data
 
-//    override suspend fun getContract(id: Long): ContractDetailDto =
-//        client.get("/agreements/$id").body()
+    override suspend fun getContract(id: Long): ContractDetailDto =
+        client.get("/agreements/$id").body<ApiResponse<ContractDetailDto>>().data
 //
 //    override suspend fun uploadContract(multipartData: ByteArray): UploadResponse =
 //        client.submitFormWithBinaryData(

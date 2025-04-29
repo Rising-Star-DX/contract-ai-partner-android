@@ -7,13 +7,12 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.poscodx.contract_ai_partner.feature.contractdetail.ContractDetailScreen
 import com.poscodx.contract_ai_partner.feature.contractlist.DocumentListScreen
 import com.poscodx.contract_ai_partner.feature.standarddetail.StandardDetailScreen
 import com.poscodx.contract_ai_partner.feature.standardlist.StandardListScreen
 import com.poscodx.contract_ai_partner.ui.upload.UploadContractScreen
 
-//import com.poscodx.contract_ai_partner.ui.mypage.MyPageScreen
-//import com.poscodx.contract_ai_partner.ui.upload.UploadScreen
 
 @Composable
 fun MainNavHost(
@@ -35,9 +34,15 @@ fun MainNavHost(
             StandardDetailScreen()
         }
 
+
         composable(BottomNavItem.Contract.route) {
-            DocumentListScreen()
+            DocumentListScreen(navController)
         }
+        composable(
+            "agreementDetail/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.LongType })
+        ) { ContractDetailScreen() }
+
         composable(BottomNavItem.MyPage.route) {
 //            MyPageScreen()
         }

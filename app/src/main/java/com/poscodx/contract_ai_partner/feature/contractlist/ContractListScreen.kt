@@ -31,9 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.poscodx.contract_ai_partner.R
 import com.poscodx.contract_ai_partner.data.mapper.toUi
 import com.poscodx.contract_ai_partner.feature.contractlist.component.CombinedChipsRow
@@ -42,7 +42,7 @@ import com.poscodx.contract_ai_partner.feature.contractlist.component.FilterBott
 import com.poscodx.contract_ai_partner.feature.contractlist.component.SortBottomSheet
 
 @Composable
-fun DocumentListScreen() {
+fun DocumentListScreen(navController: NavHostController) {
     var searchQuery by remember { mutableStateOf("") }
 
     // 바텀시트 표시 상태
@@ -74,9 +74,11 @@ fun DocumentListScreen() {
             is ContractListViewModel.UiState.Success -> {
                 Log.d("ContractListScreen", "API Success: ${uiState.data.size} items")
             }
+
             is ContractListViewModel.UiState.Error -> {
                 Log.e("ContractListScreen", "API Error", uiState.throwable)
             }
+
             else -> Unit
         }
     }
@@ -157,7 +159,10 @@ fun DocumentListScreen() {
             modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(horizontal = 16.dp)
         ) {
             items(documentList) { doc ->
-                DocumentListItem(doc)
+                DocumentListItem(
+                    document = doc,
+                    onClick = { navController.navigate("agreementDetail/$it") }
+                )
             }
         }
     }
@@ -237,10 +242,3 @@ data class DocumentItemUi(
     val dateTime: String,
     val aiStatus: String
 )
-
-// Preview
-@Preview(showBackground = true)
-@Composable
-fun DocumentListScreenPreview() {
-    DocumentListScreen()
-}

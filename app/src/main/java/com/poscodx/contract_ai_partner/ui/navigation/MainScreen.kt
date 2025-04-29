@@ -43,7 +43,9 @@ fun MainScreen() {
         BottomNavItem.Standard.route -> "기준 문서"
         BottomNavItem.Contract.route -> "계약서"
         BottomNavItem.MyPage.route -> "마이페이지"
-        else -> "오류 페이지"
+        "upload" -> "계약서 업로드"
+        "agreementDetail" -> "계약서 상세"
+        else -> ""
     }
 
     // 상단 AppBar, 하단 BottomNavigation

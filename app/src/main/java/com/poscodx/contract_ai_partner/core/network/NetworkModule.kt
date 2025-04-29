@@ -1,5 +1,6 @@
 package com.poscodx.contract_ai_partner.core.network
 
+import android.util.Log
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,6 +11,7 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
 import io.ktor.http.ContentType
@@ -38,7 +40,14 @@ object NetworkModule {
                 requestTimeoutMillis = 15_000
                 connectTimeoutMillis = 10_000
             }
-            install(Logging) { level = LogLevel.BODY }
+            install(Logging) {
+                logger = object : Logger {                      // ⭐ 커스텀 Logger
+                    override fun log(message: String) {
+                        Log.d("KtorLogger", message)
+                    }
+                }
+                level = LogLevel.ALL
+            }
             defaultRequest { header(HttpHeaders.ContentType, ContentType.Application.Json) }
 
             defaultRequest {
