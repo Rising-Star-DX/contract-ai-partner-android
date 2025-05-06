@@ -1,5 +1,7 @@
 package com.poscodx.contract_ai_partner.ui.navigation
 
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -20,16 +22,19 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.poscodx.contract_ai_partner.R
 import com.poscodx.contract_ai_partner.ui.upload.UploadBottomBar
 import com.poscodx.contract_ai_partner.ui.upload.UploadTopBar
+import com.poscodx.contract_ai_partner.ui.upload.UploadViewModel
 
 @Composable
 fun MainScreen() {
@@ -64,7 +69,32 @@ fun MainScreen() {
         },
         bottomBar = {
             if (isUploadScreen) {
-                UploadBottomBar { navController.popBackStack() }
+                val uploadVm: UploadViewModel = hiltViewModel(navBackStackEntry.value!!)
+                val context = LocalContext.current
+
+                Log.d(
+                    "MainScreen",
+                    "MainScreen: ${uploadVm.selectedCategory}, ${uploadVm.hasImage}, ${uploadVm.isUploading}"
+                )
+
+                UploadBottomBar(
+                    enabled = uploadVm.selectedCategory != null &&
+                            uploadVm.hasImage &&
+                            !uploadVm.isUploading,
+                    onClickAdd = {
+                        uploadVm.upload(
+                            onSuccess = { id ->
+                                Toast.makeText(context, "AI 분석 요청 완료(id=$id)", Toast.LENGTH_SHORT)
+                                    .show()
+                                navController.popBackStack()           // 리스트로 복귀
+                            },
+                            onError = { e ->
+                                Toast.makeText(context, e.message ?: "업로드 실패", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        )
+                    }
+                )
             } else {
                 BottomBar(navController = navController, currentRoute = currentDestination)
             }

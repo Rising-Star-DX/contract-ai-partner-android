@@ -1,9 +1,12 @@
 package com.poscodx.contract_ai_partner.di
 
+import com.poscodx.contract_ai_partner.data.repository.CategoryRepositoryImpl
 import com.poscodx.contract_ai_partner.data.repository.ContractRepositoryImpl
 import com.poscodx.contract_ai_partner.data.repository.StandardRepositoryImpl
+import com.poscodx.contract_ai_partner.domain.repository.CategoryRepository
 import com.poscodx.contract_ai_partner.domain.repository.ContractRepository
 import com.poscodx.contract_ai_partner.domain.repository.StandardRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +28,10 @@ object RepositoryModule {
     fun provideStandardRepository(
         impl: StandardRepositoryImpl
     ): StandardRepository = impl
+
+    @Provides
+    @Singleton
+    fun provideCategoryRepository(
+        impl: CategoryRepositoryImpl
+    ): CategoryRepository = impl
 }

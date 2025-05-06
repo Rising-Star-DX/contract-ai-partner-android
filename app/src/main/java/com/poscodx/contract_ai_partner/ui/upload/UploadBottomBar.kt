@@ -11,12 +11,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun UploadBottomBar(onClickAdd: () -> Unit) {
+fun UploadBottomBar(
+    onClickAdd: () -> Unit,
+    enabled: Boolean = true
+) {
     NavigationBar(modifier = Modifier.padding(horizontal = 12.dp), containerColor = Color.White) {
         Button(
             modifier = Modifier.weight(1f),
             onClick = onClickAdd,
-            shape = RoundedCornerShape(4.dp)
+            shape = RoundedCornerShape(4.dp),
+            enabled = enabled
         ) {
             Text("계약서 업로드")
         }
