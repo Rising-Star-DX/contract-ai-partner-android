@@ -6,5 +6,8 @@ import kotlinx.serialization.Serializable
 data class ApiResponse<T>(
     val code: String,
     val message: String,
-    val data: T
+    val data: T? = null
 )
+
+inline fun <T> ApiResponse<T>.requireData(): T =
+    data ?: throw IllegalStateException("[$code] $message")
